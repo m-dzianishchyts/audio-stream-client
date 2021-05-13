@@ -14,6 +14,8 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
+<!--suppress JavaFxDefaultTag -->
+
 <BorderPane fx:id="parent" prefHeight="700.0" prefWidth="1024.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.bsuir.audio_stream.client.view.Controller">
    <left>
       <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="250.0" styleClass="sidebar" BorderPane.alignment="CENTER">
@@ -286,7 +288,7 @@
    <center>
       <Pane BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER_LEFT" layoutX="560.0" layoutY="14.0" prefHeight="40.0" prefWidth="200.0" styleClass="sidebar-btns">
+            <HBox alignment="CENTER_LEFT" layoutX="560.0" layoutY="14.0" prefHeight="40.0" prefWidth="200.0" styleClass="sidebar-button">
                <padding>
                   <Insets left="10.0" />
                </padding>
