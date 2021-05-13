@@ -1,0 +1,38 @@
+.parent {
+    -fx-background-color: #FDFDFE;
+    -fx-background-radis: 10%;
+}
+
+.sidebar {
+    -fx-background-color: #FFF8E6;
+}
+
+.create-music-button {
+    -fx-background-color: #397DFF;
+    -fx-background-radius: 5px;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-background-radius: 5px;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #FDFDFE;
+    -fx-background-radius: 5px;
+}
+
+.white-round-card {
+    -fx-background-color: #fff;
+    -fx-background-radius: 20px;
+}
+
+.white-round-strip {
+    -fx-background-color: #fff;
+    -fx-background-radius: 10px;
+}
+
+.round-button {
+    -fx-background-color: #F5F8FF;
+    -fx-background-radius: 100%;
+}
