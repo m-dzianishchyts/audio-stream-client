@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Accordion?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<!--suppress JavaFxDefaultTag -->
+
+<BorderPane fx:id="parent" prefHeight="700.0" prefWidth="1024.0" styleClass="parent" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="by.bsuir.audio_stream.client.view.fxml.FxClientController">
+   <left>
+      <AnchorPane styleClass="sidebar" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefWidth="230.0" styleClass="bar" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="56.0">
+                     <children>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="main-title" text="Audio player" textFill="#666666" />
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                  </VBox>
+                  <Accordion>
+                    <panes>
+                      <TitledPane animated="false" styleClass="your-playlists-pane" textFill="#666666">
+                        <content>
+                          <AnchorPane minHeight="0.0" minWidth="0.0">
+                                 <children>
+                                    <VBox AnchorPane.bottomAnchor="-5.0" AnchorPane.leftAnchor="-5.0" AnchorPane.rightAnchor="-5.0" AnchorPane.topAnchor="-5.0">
+                                       <children>
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" />
+                                                   </graphic>
+                                                   <styleClass>
+                                                      <String fx:value="flat-button" />
+                                                      <String fx:value="play-button" />
+                                                   </styleClass>
+                                                </Button>
+                                                <Label text="Playlist #1" textFill="#666666">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="playlist-link" />
+                                                      <String fx:value="focusable" />
+                                                   </styleClass>
+                                                </Label>
+                                             </children>
+                                             <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                             </cursor>
+                                             <padding>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
+                                          <Pane prefHeight="1.0" styleClass="playlists-delimiter" />
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" />
+                                                   </graphic>
+                                                   <styleClass>
+                                                      <String fx:value="flat-button" />
+                                                      <String fx:value="play-button" />
+                                                   </styleClass>
+                                                </Button>
+                                                <Label text="Playlist #2" textFill="#666666">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="playlist-link" />
+                                                      <String fx:value="focusable" />
+                                                   </styleClass>
+                                                </Label>
+                                             </children>
+                                             <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                             </cursor>
+                                             <padding>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
+                                          <Pane prefHeight="1.0" styleClass="playlists-delimiter" />
+                                          <HBox alignment="CENTER_LEFT">
+                                             <children>
+                                                <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0">
+                                                   <graphic>
+                                                      <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" />
+                                                   </graphic>
+                                                   <styleClass>
+                                                      <String fx:value="flat-button" />
+                                                      <String fx:value="play-button" />
+                                                   </styleClass>
+                                                </Button>
+                                                <Label text="Playlist #3" textFill="#666666">
+                                                   <HBox.margin>
+                                                      <Insets left="10.0" />
+                                                   </HBox.margin>
+                                                   <styleClass>
+                                                      <String fx:value="playlist-link" />
+                                                      <String fx:value="focusable" />
+                                                   </styleClass>
+                                                </Label>
+                                             </children>
+                                             <cursor>
+                                                <Cursor fx:constant="DEFAULT" />
+                                             </cursor>
+                                             <padding>
+                                                <Insets bottom="5.0" top="5.0" />
+                                             </padding>
+                                          </HBox>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                        </content>
+                           <font>
+                              <Font name="Trebuchet MS" size="14.0" />
+                           </font>
+                           <graphic>
+                              <HBox alignment="CENTER_LEFT">
+                                 <children>
+                                    <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" styleClass="semitransparent">
+                                       <HBox.margin>
+                                          <Insets right="10.0" />
+                                       </HBox.margin>
+                                    </ImageView>
+                                    <Label text="Your playlists" />
+                                 </children>
+                              </HBox>
+                           </graphic>
+                      </TitledPane>
+                    </panes>
+                  </Accordion>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <center>
+            <VBox fx:id="searchResultContainer" spacing="10.0" styleClass="main" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox alignment="CENTER_LEFT" styleClass="track-in-list">
+                     <effect>
+                        <DropShadow color="#f2ecec" height="10.0" radius="4.5" width="10.0" />
+                     </effect>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <children>
+                        <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="32.0" prefWidth="32.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" />
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="flat-button" />
+                              <String fx:value="play-button" />
+                           </styleClass>
+                        </Button>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" smooth="false" styleClass="cover">
+                           <HBox.margin>
+                              <Insets bottom="5.0" left="15.0" right="15.0" top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label prefWidth="300.0" text="Sophisticated">
+                           <HBox.margin>
+                              <Insets right="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label minWidth="-Infinity" prefWidth="300.0" text="Naah Roberson">
+                           <HBox.margin>
+                              <Insets right="20.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label alignment="CENTER_RIGHT" layoutX="149.0" layoutY="22.0" maxWidth="1.7976931348623157E308" minWidth="-Infinity" text="3:00">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="10.0" right="30.0" />
+                     </padding>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </HBox>
+                  <Pane prefWidth="10000.0" />
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+               </padding>
+            </VBox>
+         </center>
+         <top>
+            <HBox alignment="CENTER" styleClass="header" BorderPane.alignment="CENTER">
+               <children>
+                  <TextField fx:id="searchField" minHeight="-Infinity" minWidth="-Infinity" prefHeight="30.0" prefWidth="300.0" promptText="Search" styleClass="search-bar">
+                     <padding>
+                        <Insets left="5.0" right="5.0" />
+                     </padding>
+                  </TextField>
+                  <Pane prefWidth="10000.0" />
+                  <HBox alignment="CENTER_LEFT" minHeight="-Infinity" minWidth="-Infinity">
+                     <children>
+                        <Pane styleClass="profile-photo">
+                           <children>
+                              <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" smooth="false" styleClass="semitransparent" />
+                           </children>
+                        </Pane>
+                        <Label alignment="CENTER" maxWidth="-Infinity" text="Manuel Phillips" textFill="#727070">
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Button maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="35.0" prefWidth="35.0">
+                           <graphic>
+                              <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" smooth="false" styleClass="semitransparent">
+                                 <image>
+                                    <Image url="@icons/logout_32px.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <styleClass>
+                              <String fx:value="logout-button" />
+                              <String fx:value="flat-button" />
+                           </styleClass>
+                        </Button>
+                     </children>
+                     <cursor>
+                        <Cursor fx:constant="DEFAULT" />
+                     </cursor>
+                     <padding>
+                        <Insets bottom="10.0" top="10.0" />
+                     </padding>
+                  </HBox>
+               </children>
+               <BorderPane.margin>
+                  <Insets />
+               </BorderPane.margin>
+               <padding>
+                  <Insets left="20.0" right="20.0" />
+               </padding>
+            </HBox>
+         </top>
+      </BorderPane>
+   </center>
+   <bottom>
+      <HBox alignment="CENTER" spacing="20.0" styleClass="player" BorderPane.alignment="CENTER">
+         <children>
+            <BorderPane HBox.hgrow="NEVER">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+               <center>
+                  <ImageView fitHeight="64.0" fitWidth="64.0" pickOnBounds="true" smooth="false" styleClass="cover" />
+               </center>
+            </BorderPane>
+            <HBox alignment="CENTER" spacing="20.0">
+               <children>
+                  <VBox alignment="CENTER_LEFT">
+                     <children>
+                        <Label text="Flume - You Know" textFill="#a1a1a1" />
+                        <Label text="Skin - 2016" textFill="#a1a1a1" />
+                     </children>
+                  </VBox>
+                  <Button mnemonicParsing="false" onAction="#handleLikeButton">
+                     <graphic>
+                        <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true" styleClass="semitransparent" />
+                     </graphic>
+                     <styleClass>
+                        <String fx:value="flat-button" />
+                        <String fx:value="like-button" />
+                     </styleClass>
+                  </Button>
+               </children>
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </HBox>
+            <HBox HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" spacing="20.0" VBox.vgrow="ALWAYS">
+                           <children>
+                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleShuffleButton" prefHeight="32.0" prefWidth="32.0">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" smooth="false">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="flat-button" />
+                                    <String fx:value="shuffle-button" />
+                                 </styleClass>
+                              </Button>
+                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePreviousTrackButton" prefHeight="32.0" prefWidth="32.0">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" smooth="false" styleClass="semitransparent">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="flat-button" />
+                                    <String fx:value="fast-backward-button" />
+                                 </styleClass>
+                              </Button>
+                              <StackPane fx:id="playPauseContainer">
+                                 <children>
+                                    <Button fx:id="playButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePlayButton" prefHeight="48.0" prefWidth="48.0">
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" smooth="false">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                       </graphic>
+                                       <styleClass>
+                                          <String fx:value="flat-button" />
+                                          <String fx:value="play-button" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="pauseButton" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handlePauseButton" prefHeight="48.0" prefWidth="48.0" visible="false">
+                                       <styleClass>
+                                          <String fx:value="flat-button" />
+                                          <String fx:value="pause-button" />
+                                       </styleClass>
+                                       <graphic>
+                                          <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" smooth="false">
+                                             <cursor>
+                                                <Cursor fx:constant="HAND" />
+                                             </cursor>
+                                          </ImageView>
+                                       </graphic>
+                                    </Button>
+                                 </children>
+                              </StackPane>
+                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleNextTrackButton" prefHeight="32.0" prefWidth="32.0">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" smooth="false" styleClass="semitransparent">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="flat-button" />
+                                    <String fx:value="fast-forward-button" />
+                                 </styleClass>
+                              </Button>
+                              <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#handleLoopButton" prefHeight="32.0" prefWidth="32.0">
+                                 <graphic>
+                                    <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" smooth="false" styleClass="semitransparent">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </ImageView>
+                                 </graphic>
+                                 <styleClass>
+                                    <String fx:value="flat-button" />
+                                    <String fx:value="repeat-button" />
+                                 </styleClass>
+                              </Button>
+                           </children>
+                        </HBox>
+                        <HBox alignment="CENTER">
+                           <children>
+                              <Label text="0:00" textFill="#a1a1a1" />
+                              <VBox alignment="CENTER" HBox.hgrow="ALWAYS">
+                                 <children>
+                                    <ProgressBar maxHeight="-Infinity" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="5.0" progress="0.29" VBox.vgrow="NEVER" />
+                                 </children>
+                                 <HBox.margin>
+                                    <Insets left="10.0" right="10.0" />
+                                 </HBox.margin>
+                              </VBox>
+                              <Label text="3:57" textFill="#a1a1a1" />
+                           </children>
+                           <VBox.margin>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </VBox.margin>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets bottom="10.0" left="20.0" right="20.0" top="10.0" />
+         </padding>
+      </HBox>
+   </bottom>
+</BorderPane>
