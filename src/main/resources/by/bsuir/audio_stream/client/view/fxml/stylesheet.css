@@ -1,0 +1,290 @@
+#dummy {
+    /* Gray boys. */
+    -fx-background-color: #212121;
+    -fx-background-color: #717171;
+    -fx-background-color: #E9E9E9;
+    -fx-background-color: #F8F8F8;
+    -fx-background-color: #BABABA;
+
+    /* Wild fire boys. */
+    -fx-background-color: #9F784A;
+    -fx-background-color: #CDAB48;
+    -fx-background-color: #544236;
+    -fx-background-color: #A1A17F;
+    -fx-background-color: #57804F;
+    -fx-background-color: #3D7251;
+}
+
+/* Scene parent pane. */
+.parent {
+    -fx-font-weight: bold;
+}
+
+/* Sidebar. */
+.sidebar {
+    -fx-accent: #9F784A;
+    -fx-background-color: #D1D1D1;
+}
+
+.sidebar .round-button {
+    -fx-background-color: transparent;
+}
+
+.sidebar .round-button:hover {
+    /*-fx-background-color: derive(-fx-accent, -10%);*/
+}
+
+.split-pane .split-pane-divider {
+    -fx-padding: 0;
+}
+
+.main-title {
+}
+
+.playlist-pane .title {
+    -fx-background-color: derive(#D1D1D1, -10%);
+}
+
+.playlist-pane .title .image-view {
+    -fx-image: url(icons/playlist_32px.png);
+}
+
+.playlist-pane .scroll-pane {
+    -fx-accent: derive(#D1D1D1, -5%);
+    -fx-background-color: derive(#D1D1D1, -5%);
+}
+
+.playlist-pane .scroll-pane .corner {
+    -fx-background-color: transparent;
+}
+
+
+.playlist-pane .scroll-pane .viewport {
+    -fx-background-color: derive(#D1D1D1, -5%);
+}
+
+.playlists-delimiter {
+    -fx-background-color: derive(#D1D1D1, -10%);
+}
+
+.search-bar {
+    -fx-background-color: #FFF;
+    -fx-background-radius: 3px;
+}
+
+.playlist-track:hover {
+    -fx-cursor: hand;
+}
+
+.playlist-track:hover .play-button .image-view,
+.playlist-track:hover .pause-button .image-view {
+    -fx-opacity: 1;
+}
+
+.playlist-track:hover .play-button .image-view {
+    -fx-image: url(icons/alter-play_32px.png);
+}
+
+.playlist-track:hover .pause-button .image-view {
+    -fx-image: url(icons/alter-pause_32px.png);
+}
+
+.playlist-track {
+    -fx-border-color: #bbb;
+    -fx-border-style: solid none none none;
+}
+
+.playlist-track .label {
+    -fx-text-fill: #727070;
+}
+
+.white-round-card {
+    -fx-background-color: #fff;
+    -fx-background-radius: 20px;
+}
+
+.header {
+    -fx-background-color: #E9E9E9;
+}
+
+.player {
+    -fx-background-color: #444;
+}
+
+.player .cover {
+    -fx-image: url(icons/album_128px.jpg);
+}
+
+.round-button {
+    -fx-background-radius: 50%;
+    -fx-cursor: hand;
+}
+
+.round-button:hover {
+    -fx-background-color: background;
+}
+
+.search-result-pane {
+    -fx-background-color: #F8F8F8;
+}
+
+.profile-photo .image-view {
+    -fx-image: url(icons/user_32px.png);
+}
+
+.logout-button .image-view {
+    -fx-image: url(icons/logout_32px.png);
+}
+
+.logout-button:hover .image-view {
+    -fx-image: url(icons/alter-logout_32px.png);
+}
+
+.semitransparent {
+    -fx-opacity: 0.5;
+}
+
+.search-result-track {
+    -fx-background-color: #fff;
+    -fx-background-radius: 5px;
+}
+
+.search-result-track .label {
+    -fx-text-fill: #727070;
+}
+
+.search-result-track .cover {
+    -fx-image: url(icons/album_32px.jpg);
+}
+
+.search-result-track:hover {
+    -fx-cursor: hand;
+}
+
+.search-result-track:hover .play-button .image-view,
+.search-result-track:hover .pause-button .image-view {
+    -fx-opacity: 1;
+}
+
+.search-result-track:hover .play-button .image-view {
+    -fx-image: url(icons/alter-play_32px.png);
+}
+
+.search-result-track:hover .pause-button .image-view {
+    -fx-image: url(icons/alter-pause_32px.png);
+}
+
+.like-button .image-view {
+    -fx-image: url(icons/heart_32px.png);
+}
+
+.like-button:hover . image-view {
+    -fx-image: url(icons/alter-heart_32px.png);
+}
+
+.play-button .image-view {
+    -fx-image: url(icons/play_32px.png);
+}
+
+.play-button:hover .image-view {
+    -fx-image: url(icons/alter-play_32px.png);
+}
+
+.pause-button .image-view {
+    -fx-image: url(icons/pause_32px.png);
+}
+
+.pause-button:hover .image-view {
+    -fx-image: url(icons/alter-pause_32px.png);
+}
+
+.shuffle-button .image-view {
+    -fx-image: url(icons/shuffle_32px.png);
+}
+
+.shuffle-button:hover .image-view,
+.shuffle-button.active .image-view {
+    -fx-image: url(icons/alter-shuffle_32px.png);
+}
+
+.repeat-button .image-view {
+    -fx-image: url(icons/repeat_32px.png);
+}
+
+.repeat-button:hover .image-view,
+.repeat-button.active .image-view {
+    -fx-image: url(icons/alter-repeat_32px.png);
+}
+
+.fast-backward-button .image-view {
+    -fx-image: url(icons/fast-backward_32px.png);
+}
+
+.fast-backward-button:hover .image-view {
+    -fx-image: url(icons/alter-fast-backward_32px.png);
+}
+
+.fast-forward-button .image-view {
+    -fx-image: url(icons/fast-forward_32px.png);
+}
+
+.fast-forward-button:hover .image-view {
+    -fx-image: url(icons/alter-fast-forward_32px.png);
+}
+
+.time-played-bar .bar {
+    -fx-background-color: #529943;
+    -fx-background-insets: 0;
+    -fx-padding: 0.416667em; /* 5 */
+}
+
+.time-played-bar .track {
+    -fx-cursor: hand;
+    -fx-background-color: transparent; /* this line is the background color of the bar */
+    -fx-background-insets: 0;
+    -fx-padding: 0.416667em;
+}
+
+.buffer-bar .bar {
+    -fx-background-color: #666;
+    -fx-background-insets: 0;
+    -fx-padding: 0.416667em;
+}
+
+.buffer-bar .track {
+    -fx-background-color: #333; /* this line is the background color of the bar */
+    -fx-background-insets: 0;
+    -fx-padding: 0.416667em;
+}
+
+.flat-button {
+    -fx-cursor: hand;
+    -fx-background-color: transparent;
+    -fx-background-radius: 50%;
+}
+
+.flat-button .image-view {
+    -fx-opacity: 0.5;
+}
+
+.flat-button:hover .image-view {
+    -fx-opacity: 1;
+}
+
+.volume-icon {
+    -fx-opacity: 0.5;
+}
+
+.volume-slider .track {
+    -fx-border-insets: 2;
+    -fx-padding: 2.3;
+    -fx-background-color: #333;
+}
+.volume-slider .thumb {
+    -fx-padding: 5;
+    -fx-background-color: #529943;
+}
+
+.focusable {
+    -fx-cursor: hand;
+}

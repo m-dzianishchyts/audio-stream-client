@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="consoleAppender" target="SYSTEM_OUT">
+            <PatternLayout disableAnsi="false">
+                <Pattern>%d{yyyy-mm-dd HH:mm:ss.SSS} %highlight{%5level} %style{%pid}{magenta} --- [%15t] %style{%40logger}{cyan} : %msg%n%style{%ex}{red}</Pattern>
+            </PatternLayout>
+        </Console>
+        <RollingFile name="fileAppender" fileName="logs/audio_stream_client.log">
+            <FilePattern>logs/${date:yyyy-MM}/audio_stream_client-%d{MM-dd-yyyy}-%i.log.gz</FilePattern>
+            <PatternLayout>
+                <Pattern>[%d{HH:mm:ss.SSS} %5level]: %logger[%t] - %msg%ex%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="1 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="2147483647"/>
+        </RollingFile>
+    </Appenders>
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="consoleAppender"/>
+            <AppenderRef ref="fileAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

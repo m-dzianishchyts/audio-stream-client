@@ -1,0 +1,15 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="AudioStreamClient" type="Application" factoryName="Application" nameIsGenerated="true">
+    <option name="MAIN_CLASS_NAME" value="by.bsuir.audio_stream.client.AudioStreamClient" />
+    <module name="audio-stream-client" />
+    <extension name="coverage">
+      <pattern>
+        <option name="PATTERN" value="by.bsuir.audio_stream.client.*" />
+        <option name="ENABLED" value="true" />
+      </pattern>
+    </extension>
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
+  </configuration>
+</component>
