@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.nio.file.Path;
 import java.util.Properties;
 
 public final class ClientConfiguration {
@@ -18,12 +17,14 @@ public final class ClientConfiguration {
 
     private final Properties properties;
     private final URL serverUrl;
-    private final Path fxmlDirectoryPath;
+    private final String fxmlDirectoryPath;
+    private final String iconPath;
 
     private ClientConfiguration() {
         properties = loadProperties();
         serverUrl = initServerUrl();
         fxmlDirectoryPath = initFxmlDirectoryPath();
+        iconPath = initIconPath();
     }
 
     public static synchronized ClientConfiguration getInstance() {
@@ -33,7 +34,11 @@ public final class ClientConfiguration {
         return instance;
     }
 
-    public Path getFxmlDirectoryPath() {
+    public String getIconPath() {
+        return iconPath;
+    }
+
+    public String getFxmlDirectoryPath() {
         return fxmlDirectoryPath;
     }
 
@@ -45,14 +50,22 @@ public final class ClientConfiguration {
         return serverUrl;
     }
 
-    private Path initFxmlDirectoryPath() {
+    private String initIconPath() {
+        String iconPath = properties.getProperty("app.icon.path");
+        if (iconPath == null) {
+            logger.error("Icon path is unknown (property value not found).");
+            System.exit(6);
+        }
+        return iconPath;
+    }
+
+    private String initFxmlDirectoryPath() {
         String fxmlDirectoryPathString = properties.getProperty("fxml.path");
         if (fxmlDirectoryPathString == null) {
             logger.error("FXML directory path is unknown (property value not found).");
             System.exit(5);
         }
-        Path fxmlDirectoryPathValue = Path.of(fxmlDirectoryPathString);
-        return fxmlDirectoryPathValue;
+        return fxmlDirectoryPathString;
     }
 
     private Properties loadProperties() {

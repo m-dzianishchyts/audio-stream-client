@@ -169,7 +169,7 @@ public class FxClientController implements Initializable {
             }
             int volume = newValue.intValue();
             ClientConfiguration clientConfiguration = ClientConfiguration.getInstance();
-            Path fxmlDirectoryPath = clientConfiguration.getFxmlDirectoryPath();
+            Path fxmlDirectoryPath = Path.of(clientConfiguration.getFxmlDirectoryPath());
             Path volumeIconPath;
             if (volume == 0) {
                 volumeIconPath = fxmlDirectoryPath.resolve("icons/volume-muted_32px.png");

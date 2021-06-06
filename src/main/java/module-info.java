@@ -9,5 +9,4 @@ module by.bsuir.audio_stream.client {
 
     opens by.bsuir.audio_stream.client to javafx.graphics;
     opens by.bsuir.audio_stream.client.view.fxml to javafx.fxml;
-    opens by.bsuir.audio_stream.client.view to javafx.fxml;
 }
