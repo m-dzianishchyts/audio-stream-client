@@ -9,7 +9,9 @@ import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.ConnectException;
 import java.net.HttpURLConnection;
+import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
@@ -30,7 +32,8 @@ public class AudioStreamClientApp {
         return instance;
     }
 
-    public List<AudioTrackDto> searchForAudioTracks(String query) throws NullPointerException {
+    public List<AudioTrackDto> searchForAudioTracks(String query)
+            throws NullPointerException, AudioStreamClientAppException {
         URL searchUrl;
         try {
             searchUrl = UrlBuildingUtil.buildSearchUrl(query);
@@ -43,8 +46,13 @@ public class AudioStreamClientApp {
             HttpURLConnection httpURLConnection = (HttpURLConnection) searchUrl.openConnection();
             httpURLConnection.setRequestMethod("GET");
             InputStream responseBodyStream = httpURLConnection.getInputStream();
+            if (responseBodyStream.available() == 0) {
+                return Collections.emptyList();
+            }
             AudioTrackDto[] audioTrackDto = objectMapper.readValue(responseBodyStream, AudioTrackDto[].class);
             return List.of(audioTrackDto);
+        } catch (SocketTimeoutException | ConnectException e) {
+            throw new AudioStreamClientAppException(e.getMessage(), e);
         } catch (IOException e) {
             logger.error(e.getMessage(), e);
             return Collections.emptyList();
