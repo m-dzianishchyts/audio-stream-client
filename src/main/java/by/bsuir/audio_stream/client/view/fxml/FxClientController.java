@@ -1,16 +1,20 @@
 package by.bsuir.audio_stream.client.view.fxml;
 
 import by.bsuir.audio_stream.client.app.AudioStreamClientApp;
+import by.bsuir.audio_stream.client.app.AudioStreamClientAppException;
 import by.bsuir.audio_stream.client.configuration.ClientConfiguration;
+import by.bsuir.audio_stream.client.play.AudioPlayerException;
 import by.bsuir.audio_stream.client.play.AudioStreamPlayer;
 import by.bsuir.audio_stream.client.util.TimeFormatUtils;
 import by.bsuir.audio_stream.common.AudioTrackDto;
+import javafx.application.Platform;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -259,7 +263,11 @@ public class FxClientController implements Initializable {
             return;
         }
         AudioStreamPlayer audioStreamPlayer = AudioStreamPlayer.getInstance();
-        audioStreamPlayer.playNextTrack();
+        try {
+            audioStreamPlayer.playNextTrack();
+        } catch (AudioPlayerException e) {
+            showConnectionErrorMessage();
+        }
     }
 
     @FXML
@@ -281,6 +289,12 @@ public class FxClientController implements Initializable {
     void handleShuffleButton() {
         AudioStreamPlayer audioStreamPlayer = AudioStreamPlayer.getInstance();
         audioStreamPlayer.switchShufflePlaying();
+    }
+
+    private void showConnectionErrorMessage() {
+        Alert alert = new Alert(Alert.AlertType.ERROR, "Check your Internet connection or try again later.");
+        alert.setHeaderText("Oooops... Something went wrong.");
+        alert.show();
     }
 
     private double calculateRelativeProgress(MouseEvent event) {
@@ -421,7 +435,14 @@ public class FxClientController implements Initializable {
                 return;
             }
             logger.info("Searching for {}...", searchField.getText());
-            List<AudioTrackDto> audioTrackDtoList = AudioStreamClientApp.getInstance().searchForAudioTracks(query);
+            List<AudioTrackDto> audioTrackDtoList;
+            try {
+                audioTrackDtoList = AudioStreamClientApp.getInstance().searchForAudioTracks(query);
+            } catch (AudioStreamClientAppException e) {
+                logger.error(e.getMessage());
+                Platform.runLater(FxClientController.this::showConnectionErrorMessage);
+                return;
+            }
             synchronized (searchAudioItems) {
                 List<SearchAudioItem> audioItems = audioTrackDtoList.stream()
                                                                     .map(SearchAudioItem::new)

@@ -232,6 +232,10 @@
     -fx-image: url(icons/alter-fast-forward_32px.png);
 }
 
+.time-played-bar {
+    -fx-cursor: hand;
+}
+
 .time-played-bar .bar {
     -fx-background-color: #529943;
     -fx-background-insets: 0;
@@ -239,7 +243,6 @@
 }
 
 .time-played-bar .track {
-    -fx-cursor: hand;
     -fx-background-color: transparent; /* this line is the background color of the bar */
     -fx-background-insets: 0;
     -fx-padding: 0.416667em;

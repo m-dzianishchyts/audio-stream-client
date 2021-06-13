@@ -5,19 +5,17 @@ import by.bsuir.audio_stream.common.AudioTrackDto;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
-import java.util.ListIterator;
 import java.util.NoSuchElementException;
 
 public class Playlist {
 
     private final LinkedList<AudioTrackDto> originalTrackList;
     private LinkedList<AudioTrackDto> trackList;
-    private ListIterator<AudioTrackDto> iterator;
+    private int currentPosition;
 
     public Playlist(Collection<AudioTrackDto> trackCollection) {
         originalTrackList = new LinkedList<>(trackCollection);
         trackList = new LinkedList<>(originalTrackList);
-        reset();
     }
 
     public AudioTrackDto getTrackByIndex(int index) {
@@ -26,24 +24,25 @@ public class Playlist {
                                                + originalTrackList.size() + ".");
         }
         AudioTrackDto selectedTrack = originalTrackList.get(index);
-        int indexOfSelectedTrackCurrentTrackList = trackList.indexOf(selectedTrack);
-        iterator = trackList.listIterator(indexOfSelectedTrackCurrentTrackList);
+        currentPosition = trackList.indexOf(selectedTrack);
         return selectedTrack;
     }
 
     public AudioTrackDto getNextTrack() throws NoSuchElementException {
-        if (!iterator.hasNext()) {
-            reset();
+        if (currentPosition == trackList.size() - 1) {
+            currentPosition = -1;
         }
-        AudioTrackDto nextTrack = iterator.next();
+        currentPosition++;
+        AudioTrackDto nextTrack = trackList.get(currentPosition);
         return nextTrack;
     }
 
     public AudioTrackDto getPreviousTrack() throws NoSuchElementException {
-        if (!iterator.hasPrevious()) {
-            reset();
+        if (currentPosition == 0) {
+            currentPosition = trackList.size();
         }
-        AudioTrackDto previousTrack = iterator.previous();
+        currentPosition--;
+        AudioTrackDto previousTrack = trackList.get(currentPosition);
         return previousTrack;
     }
 
@@ -56,16 +55,13 @@ public class Playlist {
         return trackList.isEmpty();
     }
 
-    public final void reset() {
-        iterator = trackList.listIterator();
-    }
-
     public void setShuffle(boolean shuffleNeeded) {
         if (shuffleNeeded) {
             Collections.shuffle(trackList);
         } else {
+            AudioTrackDto currentTrack = trackList.get(currentPosition);
             trackList = new LinkedList<>(originalTrackList);
-            reset();
+            currentPosition = trackList.indexOf(currentTrack);
         }
     }
 }

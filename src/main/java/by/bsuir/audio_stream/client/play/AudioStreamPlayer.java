@@ -25,8 +25,8 @@ import java.util.NoSuchElementException;
 
 public final class AudioStreamPlayer {
 
+    public static final String PLAYLIST_IS_EMPTY_MESSAGE = "Playlist is empty.";
     private static final Logger logger = LogManager.getLogger(AudioStreamPlayer.class);
-
     private static AudioStreamPlayer instance;
 
     private final LongProperty currentTrackIdProperty;
@@ -74,8 +74,6 @@ public final class AudioStreamPlayer {
             logger.trace("Bytes loaded: {}", bytesLoaded);
             logger.trace("Time played: {}", newTime);
         }
-
-
     };
 
     private AudioStreamPlayer() {
@@ -137,14 +135,18 @@ public final class AudioStreamPlayer {
         }
         this.playlist = new Playlist(audioTrackDtoCollection);
         currentTrackIdProperty.setValue(null);
-        updateCurrentTrack(playlist.getNextTrack());
-        try {
-            URL currentTrackUrl = buildUrlFromAudioTrackDto(currentTrack);
-            playerComponent.mediaPlayer().controls().stop();
-            playerComponent.mediaPlayer().media().start(currentTrackUrl.toString());
-        } catch (UrlBuildingException e) {
-            logger.error(e.getMessage());
-        }
+        updateCurrentTrack(playlist.getFirstTrack());
+        Thread thread = new Thread(() -> {
+            try {
+                URL currentTrackUrl = buildUrlFromAudioTrackDto(currentTrack);
+                playerComponent.mediaPlayer().controls().stop();
+                playerComponent.mediaPlayer().media().start(currentTrackUrl.toString());
+            } catch (UrlBuildingException e) {
+                logger.error(e.getMessage());
+            }
+        });
+        thread.setDaemon(true);
+        thread.start();
     }
 
     public void play() throws AudioPlayerException {
@@ -153,19 +155,6 @@ public final class AudioStreamPlayer {
 
     public void pause() {
         playerComponent.mediaPlayer().controls().pause();
-    }
-
-    public void playNextTrack() {
-        try {
-            updateCurrentTrack(playlist.getNextTrack());
-            URL currentTrackUrl = buildUrlFromAudioTrackDto(currentTrack);
-            playerComponent.mediaPlayer().media().prepare(currentTrackUrl.toString());
-            playerComponent.mediaPlayer().controls().play();
-        } catch (NoSuchElementException e) {
-            throw new AudioPlayerException("Playlist is empty.", e);
-        } catch (UrlBuildingException e) {
-            throw new AudioPlayerException(e);
-        }
     }
 
     public void playTrackByIndex(int index) {
@@ -199,32 +188,45 @@ public final class AudioStreamPlayer {
         return currentTrackIdProperty;
     }
 
+    public void playNextTrack() throws AudioPlayerException {
+        try {
+            updateCurrentTrack(playlist.getNextTrack());
+            logger.debug(currentTrack);
+            URL currentTrackUrl = buildUrlFromAudioTrackDto(currentTrack);
+            playerComponent.mediaPlayer().media().prepare(currentTrackUrl.toString());
+            playerComponent.mediaPlayer().controls().play();
+        } catch (NoSuchElementException e) {
+            throw new AudioPlayerException(PLAYLIST_IS_EMPTY_MESSAGE, e);
+        } catch (UrlBuildingException e) {
+            throw new AudioPlayerException(e);
+        }
+    }
+
     public void playPreviousTrack() {
-        if (currentTrack.equals(playlist.getFirstTrack())) {
+        if (currentTrack.equals(playlist.getFirstTrack()) && !loopedPlaying.get()) {
             playerComponent.mediaPlayer().controls().stop();
             playerComponent.mediaPlayer().controls().play();
             return;
         }
         try {
             updateCurrentTrack(playlist.getPreviousTrack());
+            logger.debug(currentTrack);
             URL currentTrackUrl = buildUrlFromAudioTrackDto(currentTrack);
             playerComponent.mediaPlayer().media().prepare(currentTrackUrl.toString());
-            if (loopedPlaying.get()) {
-                playerComponent.mediaPlayer().controls().play();
-            }
+            playerComponent.mediaPlayer().controls().play();
         } catch (NoSuchElementException e) {
-            throw new AudioPlayerException("Playlist is empty.", e);
+            throw new AudioPlayerException(PLAYLIST_IS_EMPTY_MESSAGE, e);
         } catch (UrlBuildingException e) {
             throw new AudioPlayerException(e);
         }
     }
 
     public void enableLoopedPlaying() {
-        loopedPlaying.set(false);
+        loopedPlaying.set(true);
     }
 
     public void disableLoopedPlaying() {
-        loopedPlaying.set(true);
+        loopedPlaying.set(false);
     }
 
     public void switchLoopedPlaying() {
@@ -234,16 +236,19 @@ public final class AudioStreamPlayer {
     }
 
     public void enableShufflePlaying() {
-        shufflePlaying.set(false);
+        shufflePlaying.set(true);
+        playlist.setShuffle(shufflePlaying.get());
     }
 
     public void disableShufflePlaying() {
-        shufflePlaying.set(true);
+        shufflePlaying.set(false);
+        playlist.setShuffle(shufflePlaying.get());
     }
 
     public void switchShufflePlaying() {
         boolean oldValue = shufflePlaying.get();
         shufflePlaying.set(!oldValue);
+        playlist.setShuffle(shufflePlaying.get());
         logger.info("Shuffle playing was switched to {}.", shufflePlaying.get());
     }
 
@@ -277,10 +282,6 @@ public final class AudioStreamPlayer {
 
     public BooleanProperty shufflePlayingProperty() {
         return shufflePlaying;
-    }
-
-    public void setShuffle(boolean shuffleNeeded) {
-        playlist.setShuffle(shuffleNeeded);
     }
 
     public void setVolume(int volume) throws IllegalArgumentException {
@@ -320,7 +321,7 @@ public final class AudioStreamPlayer {
                 stopped.set(true);
             }
         } catch (NoSuchElementException e) {
-            throw new AudioPlayerException("Playlist is empty.", e);
+            throw new AudioPlayerException(PLAYLIST_IS_EMPTY_MESSAGE, e);
         } catch (UrlBuildingException e) {
             throw new AudioPlayerException(e);
         }

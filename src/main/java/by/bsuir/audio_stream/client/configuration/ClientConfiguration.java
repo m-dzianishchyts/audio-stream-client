@@ -51,12 +51,12 @@ public final class ClientConfiguration {
     }
 
     private String initIconPath() {
-        String iconPath = properties.getProperty("app.icon.path");
-        if (iconPath == null) {
+        String initialIconPath = properties.getProperty("app.icon.path");
+        if (initialIconPath == null) {
             logger.error("Icon path is unknown (property value not found).");
             System.exit(6);
         }
-        return iconPath;
+        return initialIconPath;
     }
 
     private String initFxmlDirectoryPath() {
